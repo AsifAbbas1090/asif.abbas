@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asif Abbas · Open Deal</title>
+<meta name="description" content="Muhammad Asif Abbas, Business Development at NaxTech. Came up technical, now helps businesses ship AI, automation and software that holds up in production.">
+<meta property="og:title" content="Asif Abbas · Open Deal">
+<meta property="og:description" content="A portfolio you move through like a sales deal. Ends with coffee.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F2EFE6">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2EFE6; --paper-2:#E8E4D8; --ink:#141412; --muted:#6B685F;
+  --line:#141412; --signal:#FF4A1C; --won:#1E9E57; --card:#FBFAF6;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--display);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--signal);color:var(--paper)}
+a{color:inherit}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+
+/* ---------- PIPELINE BAR ---------- */
+.pipe{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--paper);border-bottom:1.5px solid var(--line)}
+.pipe-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:stretch}
+.pipe-id{padding:12px 18px;border-right:1.5px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:2px}
+.pipe-id b{font-family:var(--mono);font-size:12px}
+.pipe-id span{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.stages{display:grid;grid-template-columns:repeat(6,1fr)}
+.stage{position:relative;padding:12px 14px;border-right:1px solid rgba(20,20,18,.2);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-decoration:none;transition:color .3s}
+.stage i{font-style:normal;display:block;font-size:9px;opacity:.7}
+.stage::after{content:"";position:absolute;left:0;bottom:-1.5px;height:3px;width:0;background:var(--signal);transition:width .5s}
+.stage.done{color:var(--ink)} .stage.done::after{width:100%;background:var(--ink)}
+.stage.on{color:var(--signal)} .stage.on::after{width:100%}
+.prob{padding:10px 18px;border-left:1.5px solid var(--line);min-width:150px;text-align:right}
+.prob small{display:block;font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase}
+.prob strong{font-size:26px;font-weight:800;font-variant-numeric:tabular-nums}
+.prob.full strong{color:var(--won)}
+
+section{min-height:100vh;padding:120px 5vw 80px;position:relative;border-bottom:1.5px solid var(--line)}
+.tag{display:inline-flex;gap:10px;align-items:center;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;border:1.5px solid var(--line);padding:6px 10px;border-radius:99px;background:var(--card)}
+.tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--signal)}
+h2{font-size:clamp(40px,6.4vw,96px);line-height:.92;font-weight:800;letter-spacing:-.035em;margin:22px 0 40px;max-width:15ch}
+h2 em{font-style:normal;color:var(--signal)}
+
+/* ---------- 01 HERO ---------- */
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:5vw;align-items:end}
+.hero h1{font-size:clamp(64px,12vw,200px);line-height:.82;font-weight:800;letter-spacing:-.055em}
+.hero h1 .strike{position:relative;color:var(--muted);font-weight:400}
+.hero h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:55%;height:.09em;background:var(--signal);transform:rotate(-3deg) scaleX(0);transform-origin:left;animation:strike 1s .8s forwards cubic-bezier(.7,0,.2,1)}
+@keyframes strike{to{transform:rotate(-3deg) scaleX(1)}}
+.hero .lede{font-size:clamp(18px,1.6vw,23px);line-height:1.35;max-width:36ch;margin-top:34px}
+.hero .lede b{background:linear-gradient(transparent 60%,rgba(255,74,28,.35) 60%)}
+.hero-meta{display:flex;gap:28px;margin-top:40px;flex-wrap:wrap}
+.hero-meta div{border-top:1.5px solid var(--line);padding-top:8px;min-width:120px}
+.hero-meta small{display:block;font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase}
+.hero-meta span{font-weight:600;font-size:15px}
+
+/* the CRM record card */
+.record{background:var(--card);border:1.5px solid var(--line);box-shadow:8px 8px 0 var(--ink);transform:rotate(1.6deg);transition:transform .4s}
+.record:hover{transform:rotate(0)}
+.record-top{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1.5px solid var(--line);font-family:var(--mono);font-size:10.5px;text-transform:uppercase}
+.record-top .live{color:var(--won)} .record-top .live::before{content:"● "}
+.photo{aspect-ratio:4/4.3;margin:14px;border:1.5px dashed var(--muted);display:grid;place-items:center;background:repeating-linear-gradient(-45deg,var(--paper-2) 0 10px,var(--paper) 10px 20px);position:relative;overflow:hidden}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.photo:has(img){border-style:solid;border-color:var(--line)}
+.photo span{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;background:var(--card);padding:6px 10px;border:1px solid var(--muted)}
+.fields{display:grid;grid-template-columns:1fr 1fr;border-top:1.5px solid var(--line)}
+.fields div{padding:10px 14px;border-right:1px solid rgba(20,20,18,.15);border-bottom:1px solid rgba(20,20,18,.15)}
+.fields div:nth-child(2n){border-right:0}
+.fields small{display:block;font-family:var(--mono);font-size:9.5px;color:var(--muted);text-transform:uppercase}
+.fields b{font-size:14px;font-weight:600}
+.scrollcue{position:absolute;bottom:26px;left:5vw;font-family:var(--mono);font-size:11px;text-transform:uppercase;display:flex;gap:10px;align-items:center}
+.scrollcue::before{content:"";width:40px;height:1.5px;background:var(--ink);animation:cue 1.6s infinite}
+@keyframes cue{50%{width:70px}}
+
+/* ticker */
+.ticker{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;border-bottom:1.5px solid var(--line)}
+.ticker-track{display:inline-flex;animation:tick 40s linear infinite;padding:14px 0}
+.ticker span{font-family:var(--mono);font-size:12px;text-transform:uppercase;padding:0 28px;letter-spacing:.05em}
+.ticker span b{color:var(--signal);font-weight:600}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- 02 DISCOVERY ---------- */
+.disc{display:grid;grid-template-columns:1fr 1.1fr;gap:5vw}
+.disc p.body{font-size:20px;line-height:1.45;max-width:40ch;margin-bottom:22px}
+.disc p.body.dim{color:var(--muted);font-size:17px}
+.call{background:var(--ink);color:var(--paper);border-radius:4px;overflow:hidden;box-shadow:8px 8px 0 var(--signal)}
+.call-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #333;font-family:var(--mono);font-size:11px;text-transform:uppercase}
+.call-head .rec{color:var(--signal)} .call-head .rec::before{content:"●";margin-right:6px;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.2}}
+.qs{display:flex;flex-direction:column}
+.q{all:unset;cursor:pointer;padding:15px 16px;border-bottom:1px solid #2a2a27;display:flex;gap:14px;font-size:16px;transition:background .2s}
+.q:hover{background:#1f1f1c}
+.q small{font-family:var(--mono);font-size:10px;color:#8a877e;min-width:62px;padding-top:3px;text-transform:uppercase}
+.q.active{background:#23231f}
+.q.active small{color:var(--signal)}
+.answer{padding:18px 16px 22px;min-height:170px;background:#0c0c0b}
+.answer .who{font-family:var(--mono);font-size:10px;color:var(--won);text-transform:uppercase;margin-bottom:8px}
+.answer .txt{font-size:17px;line-height:1.5;color:#EDEAE0}
+.answer .txt::after{content:"▍";color:var(--signal);animation:blink .8s infinite}
+.answer .vs{margin-top:14px;font-family:var(--mono);font-size:11px;color:#77746b}
+.answer .vs s{color:#a39f94}
+
+/* ---------- 03 QUALIFICATION ---------- */
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.col{border:1.5px solid var(--line);background:var(--paper-2);min-height:420px;display:flex;flex-direction:column}
+.col-h{padding:10px 12px;border-bottom:1.5px solid var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;text-transform:uppercase;background:var(--paper)}
+.col-h b{color:var(--signal)}
+.col-b{padding:12px;display:flex;flex-direction:column;gap:12px;flex:1}
+.deal{background:var(--card);border:1.5px solid var(--line);padding:14px;transition:transform .25s, box-shadow .25s;cursor:default}
+.deal:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink)}
+.deal .co{font-family:var(--mono);font-size:10px;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+.deal h3{font-size:21px;line-height:1.05;margin:8px 0 10px;letter-spacing:-.02em}
+.deal ul{list-style:none;font-size:13.5px;line-height:1.4;color:#3a3833}
+.deal li{padding-left:14px;position:relative;margin-bottom:5px}
+.deal li::before{content:"→";position:absolute;left:0;color:var(--signal);font-size:11px;top:1px}
+.deal li b{font-weight:600;color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);border:1.5px solid var(--line);background:var(--ink);color:var(--paper);margin:-10px 0 18px}
+.kpis div{padding:18px 18px 16px;border-right:1px solid #3a3a36}
+.kpis div:last-child{border-right:0}
+.kpis b{display:block;font-size:clamp(30px,3.4vw,48px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--signal);font-variant-numeric:tabular-nums}
+.kpis small{display:block;font-family:var(--mono);font-size:10px;text-transform:uppercase;color:#a9a59a;margin-top:8px;line-height:1.4}
+@media (max-width:980px){.kpis{grid-template-columns:1fr 1fr}.kpis div{border-bottom:1px solid #3a3a36}.kpis div:last-child{grid-column:1/-1}}
+.deal .foot{margin-top:12px;padding-top:10px;border-top:1px dashed #b5b1a5;font-family:var(--mono);font-size:10px;display:flex;justify-content:space-between;text-transform:uppercase}
+.deal.current{border-color:var(--signal);box-shadow:5px 5px 0 var(--signal)}
+.deal.current .foot{color:var(--signal)}
+.pill{display:inline-block;padding:2px 7px;border:1px solid currentColor;border-radius:99px}
+.col.empty .col-b{justify-content:center;align-items:center;text-align:center;border:1.5px dashed var(--muted);margin:12px;background:transparent}
+.col.empty p{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted);line-height:1.6}
+
+/* ---------- 04 PROPOSAL ---------- */
+.prop{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:start}
+.order{counter-reset:o}
+.order li{list-style:none;display:grid;grid-template-columns:70px 1fr;padding:22px 0;border-top:1.5px solid var(--line);align-items:baseline}
+.order li:last-child{border-bottom:1.5px solid var(--line)}
+.order li b{font-family:var(--mono);font-size:12px;color:var(--signal)}
+.order li span{font-size:clamp(28px,3.4vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1}
+.order li:nth-child(3) span{color:var(--muted);font-weight:400}
+.order li small{grid-column:2;font-size:15px;color:var(--muted);margin-top:6px;line-height:1.4}
+.svc{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.svc span{border:1.5px solid var(--line);padding:8px 12px;border-radius:99px;font-size:14px;background:var(--card);transition:all .2s}
+.svc span:hover{background:var(--ink);color:var(--paper)}
+
+.detector{border:1.5px solid var(--line);background:var(--card);box-shadow:8px 8px 0 var(--ink)}
+.detector header{padding:14px 18px;border-bottom:1.5px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.detector header h3{font-size:20px;letter-spacing:-.02em}
+.checks{padding:6px 18px}
+.chk{display:flex;gap:14px;padding:14px 0;border-bottom:1px dashed #c6c2b6;cursor:pointer;align-items:flex-start;user-select:none}
+.chk:last-child{border-bottom:0}
+.box{width:24px;height:24px;border:1.5px solid var(--line);flex:none;display:grid;place-items:center;font-weight:800;transition:all .2s;margin-top:1px}
+.chk.on .box{background:var(--won);border-color:var(--won);color:#fff}
+.chk p{font-size:15.5px;line-height:1.4}
+.chk p small{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.verdict{padding:18px;border-top:1.5px solid var(--line);background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.verdict .v{font-size:24px;font-weight:800;letter-spacing:-.02em;display:block}
+.verdict .adv{font-size:14px;line-height:1.4;color:#c9c5ba;margin-top:6px;max-width:38ch}
+.verdict.pass .v{color:#5fd896} .verdict.warn .v{color:var(--signal)}
+.fit-h{font-family:var(--mono);font-size:10px;text-transform:uppercase;color:var(--signal);padding:14px 0 0;border-top:1.5px solid var(--line);margin-top:4px}
+.chk:has(+ .fit-h){border-bottom:0}
+.chk.fit.on .box{background:var(--ink);border-color:var(--ink)}
+.verdict .meter{flex:1;height:8px;background:#333;max-width:160px;position:relative}
+.verdict .meter i{position:absolute;inset:0 auto 0 0;width:0;background:var(--signal);transition:width .4s,background .4s}
+.detector .src{padding:10px 18px;font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;border-top:1.5px solid var(--line)}
+
+/* ---------- 05 NEGOTIATION / PROOF ---------- */
+.proof{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.tile{border:1.5px solid var(--line);background:var(--card);padding:22px;position:relative}
+.tile .k{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between}
+.tile h3{font-size:28px;line-height:1;letter-spacing:-.03em;margin-bottom:10px}
+.tile p{font-size:15px;line-height:1.45;color:#3a3833}
+.t1{grid-column:span 7;background:var(--ink);color:var(--paper)} .t1 p{color:#c9c5ba} .t1 .k{color:#8a877e}
+.t2{grid-column:span 5}
+.t3{grid-column:span 4} .t4{grid-column:span 4} .t5{grid-column:span 4;background:var(--signal);color:var(--ink)} .t5 .k{color:var(--ink)} .t5 p{color:var(--ink)}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.stack span{font-family:var(--mono);font-size:10.5px;border:1px solid #55524a;padding:4px 8px;text-transform:uppercase}
+.notes{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.note{border:1.5px solid var(--line);padding:18px;background:var(--paper);display:flex;flex-direction:column;justify-content:space-between;min-height:180px;transition:background .2s}
+.note:hover{background:var(--card)}
+.note q{font-size:19px;line-height:1.25;letter-spacing:-.01em;quotes:none;font-weight:600}
+.note small{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;margin-top:16px}
+
+
+/* ---------- OFF THE RECORD ---------- */
+.otr{background:var(--paper-2)}
+.otr-head{display:flex;justify-content:space-between;align-items:end;gap:5vw;flex-wrap:wrap}
+.otr-head p{font-size:18px;line-height:1.45;max-width:34ch;color:#3a3833;margin-bottom:40px}
+.wall{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(150px,17vw,250px);gap:18px}
+.snap{position:relative;background:var(--card);border:1.5px solid var(--line);padding:10px 10px 44px;box-shadow:6px 6px 0 var(--ink);transition:transform .35s,box-shadow .35s}
+.snap:hover{transform:rotate(0) translate(-3px,-3px)!important;box-shadow:10px 10px 0 var(--signal);z-index:2}
+.snap .img{width:100%;height:100%;overflow:hidden;position:relative;background:var(--paper-2)}
+.snap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}
+.snap:hover img{transform:scale(1.04)}
+.snap figcaption{position:absolute;left:12px;right:12px;bottom:10px;display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:10.5px;text-transform:uppercase}
+.snap figcaption b{color:var(--signal);font-weight:600}
+.snap .tape{position:absolute;top:-12px;left:50%;width:84px;height:24px;background:rgba(255,74,28,.55);transform:translateX(-50%) rotate(-4deg)}
+.s-lake{grid-column:1/6;grid-row:span 3;transform:rotate(-1.2deg)}
+.s-lake .quote{position:absolute;left:0;right:0;bottom:0;padding:60px 20px 18px;background:linear-gradient(transparent,rgba(10,10,9,.8));color:#F2EFE6}
+.s-lake .quote q{font-size:clamp(20px,2vw,28px);font-weight:800;letter-spacing:-.02em;line-height:1.05;quotes:none;display:block}
+.s-lake .quote small{font-family:var(--mono);font-size:10px;text-transform:uppercase;opacity:.75;display:block;margin-top:8px}
+.s-gym{grid-column:6/9;grid-row:span 2;transform:rotate(1.5deg)}
+.s-gym img{object-position:center 60%}
+.s-peaks{grid-column:9/13;grid-row:span 2;transform:rotate(-1deg)}
+.s-peaks img{object-position:center 40%}
+.s-sky{grid-column:6/10;grid-row:span 1;transform:rotate(-.6deg)}
+.s-desk{grid-column:10/13;grid-row:span 1;transform:rotate(1.2deg)}
+.s-desk img{object-position:center 45%}
+.facts{grid-column:1/13;display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--line);background:var(--card);margin-top:14px}
+.facts div{padding:16px 18px;border-right:1px solid rgba(20,20,18,.15)}
+.facts div:last-child{border-right:0}
+.facts small{display:block;font-family:var(--mono);font-size:10px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.facts b{font-size:17px;letter-spacing:-.01em}
+@media (max-width:980px){
+  .wall{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
+  .wall .snap{grid-column:auto!important;grid-row:auto!important;aspect-ratio:3/4}
+  .wall .s-lake{grid-column:1/3!important;aspect-ratio:4/5}
+  .wall .s-sky{grid-column:1/3!important;aspect-ratio:4/3}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div:nth-child(2){border-right:0}
+  .facts div:nth-child(-n+2){border-bottom:1px solid rgba(20,20,18,.15)}
+}
+@media (max-width:640px){.wall .snap{aspect-ratio:auto;height:300px}.wall .s-lake{height:460px}}
+
+
+/* ---------- SCOPE BUILDER ---------- */
+.scope{background:var(--paper);min-height:auto}
+.scope-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:4vw;align-items:start}
+.step{margin-bottom:30px}
+.step-h{display:flex;gap:12px;align-items:baseline;margin-bottom:12px}
+.step-h b{font-family:var(--mono);font-size:11px;color:var(--signal)}
+.step-h span{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{all:unset;cursor:pointer;border:1.5px solid var(--line);padding:10px 14px;border-radius:99px;font-size:15px;background:var(--card);transition:all .18s}
+.opt:hover{transform:translateY(-2px);box-shadow:0 3px 0 var(--ink)}
+.opt.sel{background:var(--ink);color:var(--paper)}
+.opt:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.brief{position:sticky;top:90px;background:var(--card);border:1.5px solid var(--line);box-shadow:8px 8px 0 var(--ink);min-height:420px;display:flex;flex-direction:column}
+.brief-top{display:flex;justify-content:space-between;padding:12px 16px;border-bottom:1.5px solid var(--line);font-family:var(--mono);font-size:10.5px;text-transform:uppercase}
+.brief-top .st{color:var(--muted)} .brief.ready .brief-top .st{color:var(--won)}
+.brief-body{padding:22px 20px;flex:1}
+.brief .empty{color:var(--muted);font-family:var(--mono);font-size:12px;text-transform:uppercase;line-height:1.8}
+.brief .empty i{font-style:normal;display:block;height:10px;background:var(--paper-2);margin:10px 0;width:80%}
+.brief .empty i:nth-child(2){width:60%} .brief .empty i:nth-child(3){width:70%}
+.brief h3{font-size:30px;line-height:1;letter-spacing:-.03em;margin:4px 0 14px}
+.brief .lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+.brief ol{padding-left:0;list-style:none;counter-reset:q}
+.brief ol li{counter-increment:q;padding:8px 0 8px 30px;position:relative;font-size:15px;line-height:1.4;border-top:1px dashed #c6c2b6}
+.brief ol li::before{content:"Q" counter(q);position:absolute;left:0;top:9px;font-family:var(--mono);font-size:11px;color:var(--signal)}
+.brief .chips{display:flex;flex-wrap:wrap;gap:6px}
+.brief .chips span{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;border:1px solid var(--line);padding:4px 8px}
+.brief .fade{animation:fadeup .45s both}
+@keyframes fadeup{from{opacity:0;transform:translateY(8px)}}
+.brief-foot{border-top:1.5px solid var(--line);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.brief-foot button{all:unset;cursor:pointer;background:var(--signal);color:var(--ink);font-weight:800;padding:10px 16px;font-size:15px;opacity:.35;pointer-events:none;transition:opacity .2s}
+.brief.ready .brief-foot button{opacity:1;pointer-events:auto}
+.brief-foot small{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase}
+
+/* ---------- DRAGGABLE WALL ---------- */
+@media (pointer:fine){.snap{cursor:grab}.snap.dragging{cursor:grabbing;transition:none;z-index:5;box-shadow:14px 14px 0 var(--signal)}}
+.drag-hint{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--signal);margin:-20px 0 26px}
+@media (pointer:coarse){.drag-hint{display:none}}
+
+/* ---------- SIGNATURE ---------- */
+.sigbox{margin-top:16px}
+.sigbox .sl{display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}
+.sigbox canvas{display:block;width:100%;height:90px;border-bottom:1.5px solid var(--ink);cursor:crosshair;touch-action:none;background:repeating-linear-gradient(0deg,transparent 0 29px,rgba(20,20,18,.06) 29px 30px)}
+.sigbox button{all:unset;cursor:pointer;font-size:10px;text-decoration:underline;color:var(--muted)}
+.receipt .row.new{color:var(--signal);animation:fadeup .4s both}
+.sign[disabled]{opacity:.45;cursor:not-allowed}
+
+/* ---------- COMMAND PALETTE ---------- */
+.kbtn{all:unset;position:fixed;right:18px;bottom:18px;z-index:60;cursor:pointer;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:11px;text-transform:uppercase;padding:10px 14px;border:1.5px solid var(--paper);box-shadow:4px 4px 0 var(--signal);display:flex;gap:10px;align-items:center}
+.kbtn kbd{font-family:var(--mono);background:var(--signal);color:var(--ink);padding:2px 6px;font-size:11px}
+.pal-bg{position:fixed;inset:0;z-index:80;background:rgba(20,20,18,.45);backdrop-filter:blur(3px);display:none;align-items:flex-start;justify-content:center;padding:14vh 16px 0}
+.pal-bg.open{display:flex}
+.pal{width:100%;max-width:560px;background:var(--card);border:1.5px solid var(--line);box-shadow:10px 10px 0 var(--ink);animation:fadeup .2s both}
+.pal input{all:unset;box-sizing:border-box;width:100%;padding:18px 20px;font-size:19px;border-bottom:1.5px solid var(--line);font-family:var(--display)}
+.pal ul{list-style:none;max-height:340px;overflow:auto;padding:6px 0}
+.pal li{padding:11px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:15.5px}
+.pal li small{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase}
+.pal li.act{background:var(--ink);color:var(--paper)} .pal li.act small{color:var(--signal)}
+.pal .ph{padding:9px 20px;border-top:1.5px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;display:flex;justify-content:space-between}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;z-index:90;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;text-transform:uppercase;padding:10px 16px;border-left:4px solid var(--signal);transition:all .3s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (max-width:980px){.scope-grid{grid-template-columns:1fr}.brief{position:relative;top:0}}
+@media (max-width:640px){.kbtn span{display:none}}
+
+
+/* ---------- CONTACT CONSOLE ---------- */
+.console{grid-column:1/-1;margin-top:30px;border:1.5px solid #3a3a36;display:grid;grid-template-columns:1.1fr 1fr;background:#1b1b19}
+.con-l{padding:28px;border-right:1.5px solid #3a3a36}
+.con-l h3{font-size:clamp(26px,2.6vw,36px);letter-spacing:-.03em;line-height:1;margin-bottom:6px}
+.con-l .sub{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:#8a877e;margin-bottom:24px}
+.cq{margin-bottom:20px}
+.cq > b{display:block;font-family:var(--mono);font-size:10.5px;text-transform:uppercase;color:var(--signal);margin-bottom:10px;font-weight:400}
+.copts{display:flex;flex-wrap:wrap;gap:8px}
+.copt{all:unset;cursor:pointer;border:1.5px solid #55524a;color:var(--paper);padding:9px 13px;border-radius:99px;font-size:14.5px;transition:all .18s}
+.copt:hover{border-color:var(--paper)}
+.copt.sel{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.copt:focus-visible,.cname:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.cname{all:unset;box-sizing:border-box;width:100%;max-width:340px;border-bottom:1.5px solid #55524a;padding:8px 0;font-size:17px;color:var(--paper)}
+.cname::placeholder{color:#6f6c64}
+.con-r{padding:28px;display:flex;flex-direction:column;gap:16px;background:repeating-linear-gradient(45deg,#1b1b19 0 14px,#1e1e1c 14px 28px)}
+.phone-h{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid #3a3a36}
+.phone-h img{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 30%}
+.phone-h b{display:block;font-size:15px}
+.phone-h small{font-family:var(--mono);font-size:10px;color:#5fd896;text-transform:uppercase}
+.bubble{align-self:flex-end;max-width:92%;background:#DCF5C9;color:#111;padding:12px 14px 22px;border-radius:14px 14px 2px 14px;font-size:15px;line-height:1.45;position:relative;min-height:48px;white-space:pre-wrap}
+.bubble::after{content:"✓✓";position:absolute;right:10px;bottom:5px;font-size:10px;color:#34a0e0;letter-spacing:-2px}
+.bubble.typing::before{content:"▍";color:var(--signal);animation:blink .8s infinite;position:absolute;right:30px;bottom:4px;font-size:12px}
+.acts{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px;margin-top:auto}
+.act-b{all:unset;cursor:pointer;text-align:center;padding:14px 10px;font-weight:800;font-size:15px;border:1.5px solid var(--paper);transition:all .18s;display:flex;align-items:center;justify-content:center;gap:8px}
+.act-b.wa{background:#25D366;border-color:#25D366;color:#0b2a17}
+.act-b.wa:hover{background:var(--paper);border-color:var(--paper)}
+.act-b:not(.wa):hover{background:var(--paper);color:var(--ink)}
+.act-b svg{width:17px;height:17px;flex:none}
+.num{font-family:var(--mono);font-size:11px;color:#8a877e;text-transform:uppercase;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.num button{all:unset;cursor:pointer;text-decoration:underline;color:var(--paper)}
+@media (max-width:980px){.console{grid-template-columns:1fr}.con-l{border-right:0;border-bottom:1.5px solid #3a3a36}}
+@media (max-width:640px){.con-l,.con-r{padding:20px 16px}.acts{grid-template-columns:1fr 1fr}.acts .wa{grid-column:1/-1}}
+
+/* ---------- 06 CLOSED WON ---------- */
+.close{display:grid;grid-template-columns:1.2fr 1fr;gap:5vw;align-items:center;background:var(--ink);color:var(--paper);border-bottom:0}
+.close .tag{background:transparent;border-color:var(--paper);color:var(--paper)}
+.close h2{color:var(--paper)}
+.close p{font-size:20px;line-height:1.45;color:#c9c5ba;max-width:38ch}
+.sign{margin-top:36px;all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:14px;background:var(--signal);color:var(--ink);padding:20px 28px;font-weight:800;font-size:20px;letter-spacing:-.01em;border:1.5px solid var(--signal);transition:all .2s}
+.sign:hover{background:var(--paper);border-color:var(--paper)}
+.sign-wrap{margin-top:36px}
+.receipt{background:#FBFAF6;color:var(--ink);font-family:var(--mono);font-size:12.5px;padding:26px 24px 34px;position:relative;max-width:360px;justify-self:center;width:100%;transform:rotate(-2deg);
+  -webkit-mask:radial-gradient(circle 7px at 50% 100%,transparent 98%,#000) 0 0/18px 100% repeat-x;mask:radial-gradient(circle 7px at 50% 100%,transparent 98%,#000) bottom/18px 14px repeat-x, linear-gradient(#000,#000) top/100% calc(100% - 13px) no-repeat}
+.receipt h4{text-align:center;font-size:15px;letter-spacing:.1em;margin-bottom:4px}
+.receipt .c{text-align:center;color:var(--muted);font-size:10.5px;margin-bottom:16px}
+.receipt .row{display:flex;justify-content:space-between;padding:4px 0}
+.receipt hr{border:0;border-top:1.5px dashed #999;margin:10px 0}
+.receipt .tot{font-weight:600;font-size:15px}
+.receipt .bar{height:40px;margin-top:18px;background:repeating-linear-gradient(90deg,#141412 0 2px,transparent 2px 4px,#141412 4px 5px,transparent 5px 8px,#141412 8px 11px,transparent 11px 12px)}
+.stamp{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%) rotate(-14deg) scale(2.4);border:4px solid var(--won);color:var(--won);font-family:var(--display);font-weight:800;font-size:34px;padding:6px 16px;letter-spacing:.02em;opacity:0;pointer-events:none;border-radius:6px;white-space:nowrap;background:rgba(251,250,246,.85)}
+.stamp.hit{animation:stamp .45s forwards cubic-bezier(.3,1.6,.5,1)}
+@keyframes stamp{to{opacity:1;transform:translate(-50%,-50%) rotate(-14deg) scale(1)}}
+.links{display:flex;gap:22px;margin-top:30px;font-family:var(--mono);font-size:12px;text-transform:uppercase}
+.links a{text-decoration:none;border-bottom:1.5px solid var(--signal);padding-bottom:2px}
+footer{background:var(--ink);color:#77746b;font-family:var(--mono);font-size:11px;text-transform:uppercase;padding:22px 5vw;display:flex;justify-content:space-between;border-top:1px solid #2c2c29}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s, transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+section{scroll-margin-top:0}
+@media (max-width:1100px){
+  .pipe-id{display:none}
+  .pipe-inner{grid-template-columns:1fr auto}
+  .stage{padding:10px 8px;font-size:9.5px}
+  .prob{min-width:110px}
+}
+@media (max-width:980px){
+  .stages .stage i{display:none}
+  .hero,.disc,.prop,.close{grid-template-columns:1fr}
+  .record{max-width:420px}
+  .board{grid-template-columns:1fr 1fr}
+  .proof>*{grid-column:span 12 !important}
+  .notes{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  section{padding:110px 16px 70px}
+  .pipe-id{display:none}
+  .pipe-inner{grid-template-columns:1fr auto}
+  .stage{padding:10px 4px;font-size:0;text-align:center}
+  .stage::before{content:attr(data-n);font-size:10px}
+  .prob{min-width:0;padding:6px 12px}
+  .prob strong{font-size:20px}
+  .board{grid-template-columns:1fr}
+  .hero-meta{gap:16px}
+  .scrollcue{left:16px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ PIPELINE BAR ============ -->
+<nav class="pipe">
+  <div class="pipe-inner">
+    <div class="pipe-id"><b>DEAL #0001 · YOU × ASIF</b><span>Owner: M. Asif Abbas</span></div>
+    <div class="stages" id="stages">
+      <a class="stage" href="#prospect" data-n="01"><i>01</i>Prospecting</a>
+      <a class="stage" href="#discovery" data-n="02"><i>02</i>Discovery</a>
+      <a class="stage" href="#qualify" data-n="03"><i>03 · Experience</i>Qualification</a>
+      <a class="stage" href="#proposal" data-n="04"><i>04</i>Proposal</a>
+      <a class="stage" href="#proof" data-n="05"><i>05</i>Negotiation</a>
+      <a class="stage" href="#close" data-n="06"><i>06</i>Closed Won</a>
+    </div>
+    <div class="prob" id="prob"><small>Win probability</small><strong id="probN">10%</strong></div>
+  </div>
+</nav>
+
+<!-- ============ 01 PROSPECTING ============ -->
+<section id="prospect" data-p="10" data-s="0">
+  <div class="hero">
+    <div>
+      <span class="tag">Stage 01 · You just entered my pipeline</span>
+      <h1 style="margin-top:28px">Asif<br><span class="strike">Pitches.</span><br>Ships.</h1>
+      <p class="lede">I came up <b>technical</b> (DevOps, full stack, cloud) and now I help businesses <b>actually ship</b> the things they need built. No pitch. Just a real conversation.</p>
+      <div class="hero-meta">
+        <div><small>Currently</small><span>BD Executive, NaxTech</span></div>
+        <div><small>Based in</small><span>Lahore, PK · Remote</span></div>
+        <div><small>Focus</small><span>Agentic AI, outcome first</span></div>
+      </div>
+    </div>
+    <aside class="record reveal">
+      <div class="record-top"><span>Contact record</span><span class="live">Open to talk</span></div>
+      <div class="photo"><span>Your photo goes here</span><img src="img/asif.jpg" alt="Muhammad Asif Abbas" onerror="this.remove()"></div>
+      <div class="fields">
+        <div><small>Name</small><b>Muhammad Asif Abbas</b></div>
+        <div><small>Lead source</small><b>Engineering → Sales</b></div>
+        <div><small>Speaks</small><b>Founder &amp; Engineer</b></div>
+        <div><small>Next step</small><b style="color:var(--signal)">Coffee ☕</b></div>
+      </div>
+    </aside>
+  </div>
+  <div class="scrollcue">Scroll to advance the deal</div>
+</section>
+
+<div class="ticker"><div class="ticker-track" id="ticker"></div></div>
+
+<!-- ============ 02 DISCOVERY ============ -->
+<section id="discovery" data-p="25" data-s="1">
+  <div class="disc">
+    <div class="reveal">
+      <span class="tag">Stage 02 · Discovery call</span>
+      <h2>Most reps say <em>"let me check with engineering."</em></h2>
+      <p class="body">I sit in a spot that's pretty rare in sales. Before this, I was building: DevOps, full stack, cloud pipelines, automation. I deployed the kind of systems I now help companies adopt.</p>
+      <p class="body dim">So when a founder or ops leader asks the hard question about how something fits their setup, I answer it on the call, not next week.</p>
+      <p class="mono" style="color:var(--signal);margin-top:30px">← Try it. Ask me something a buyer would ask.</p>
+    </div>
+    <div class="call reveal">
+      <div class="call-head"><span>Discovery · 00:<span id="clock">00</span></span><span class="rec">Live</span></div>
+      <div class="qs" id="qs"></div>
+      <div class="answer"><div class="who">Asif answers, on the call</div><div class="txt" id="ans"></div><div class="vs" id="vs"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 QUALIFICATION ============ -->
+<section id="qualify" data-p="45" data-s="2">
+  <div class="reveal">
+    <span class="tag">Stage 03 · Qualification · Experience</span>
+    <h2>Every role moved me <em>one column right.</em></h2>
+  </div>
+  <div class="kpis reveal">
+    <div><b data-to="3" data-suf="+">0</b><small>Years of B2B outbound</small></div>
+    <div><b>12–16</b><small>Qualified discovery calls / month at Tkxel</small></div>
+    <div><b data-to="150" data-suf="+">0</b><small>Outreach touchpoints / week</small></div>
+    <div><b data-to="10" data-suf="%+">0</b><small>Positive reply rate</small></div>
+    <div><b data-to="35" data-suf="%+">0</b><small>Call-to-interest conversion</small></div>
+  </div>
+  <div class="board reveal">
+    <div class="col">
+      <div class="col-h"><span>Outreach</span><b>2023</b></div>
+      <div class="col-b">
+        <div class="deal">
+          <div class="co"><span>AuraDev</span><span>1y 8m</span></div>
+          <h3>Business Development Associate</h3>
+          <ul><li><b>50+ international projects</b> won across Upwork, Freelancer &amp; Workana</li><li><b>+30% pipeline conversion</b> from rebuilt pitch scripts</li><li>Outreach across email, calls &amp; LinkedIn</li></ul>
+          <div class="foot"><span>Jul 23 – Feb 25</span><span class="pill">Won</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-h"><span>Ownership</span><b>2025</b></div>
+      <div class="col-b">
+        <div class="deal">
+          <div class="co"><span>AuraDev</span><span>1y</span></div>
+          <h3>Business Development Executive</h3>
+          <ul><li>Owned client relationships end to end</li><li>Brought in new client work</li><li>Scoped projects &amp; set realistic timelines</li><li>Kept delivery landing the way it was sold</li></ul>
+          <div class="foot"><span>Mar 25 – Feb 26</span><span class="pill">Won</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-h"><span>North America</span><b>2026</b></div>
+      <div class="col-b">
+        <div class="deal">
+          <div class="co"><span>Tkxel · Reston, VA</span><span>8m</span></div>
+          <h3>Sales Development Representative</h3>
+          <ul><li><b>12–16 qualified discovery calls</b> a month</li><li><b>150+ touchpoints a week</b>, 10%+ positive replies</li><li>US &amp; UK outbound: calls, email, LinkedIn</li><li>Positioned agentic AI &amp; VisionWerk (computer vision)</li><li>Apollo, Cognism, Sales Navigator, Salesforce</li></ul>
+          <div class="foot"><span>Feb 26 – Sep 26</span><span class="pill">Won</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-h"><span>Full service</span><b>Now</b></div>
+      <div class="col-b">
+        <div class="deal current">
+          <div class="co"><span>NaxTech</span><span>Active</span></div>
+          <h3>Business Development Executive</h3>
+          <ul><li>Own outbound + inbound across every service line</li><li>US &amp; UK founders and ops leaders</li><li>Translate business goals into technical scope</li><li>Answer architecture questions on the first call</li></ul>
+          <div class="foot"><span>Sep 26 – Present</span><span class="pill">In progress</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 PROPOSAL ============ -->
+<section id="proposal" data-p="65" data-s="3">
+  <div class="prop">
+    <div class="reveal">
+      <span class="tag">Stage 04 · Proposal · how I scope every deal</span>
+      <h2>The order <em>matters.</em></h2>
+      <ol class="order">
+        <li><b>01</b><span>Outcome first.</span><small>What has to be true after launch for this to be worth it?</small></li>
+        <li><b>02</b><span>Data &amp; strategy second.</span><small>Messy, disconnected, permission-locked data is where pilots die.</small></li>
+        <li><b>03</b><span>Tool last.</span><small>The model or platform is the easy part once the first two are real.</small></li>
+      </ol>
+      <div class="svc">
+        <span>AI &amp; Automation</span><span>Agentic Systems</span><span>DevOps &amp; Cloud</span><span>SaaS</span><span>Web Apps</span><span>iOS &amp; Android</span><span>UI/UX</span><span>Databases</span><span>Digital Marketing</span>
+      </div>
+    </div>
+    <div class="detector reveal">
+      <header><h3>Agent-washing detector</h3><span class="mono" style="color:var(--muted)">Tool · v1</span></header>
+      <div class="checks" id="checks">
+        <div class="chk" data-w="34"><div class="box"></div><p>It finishes one real task with no human doing the last step.<small>Not "a human reviews it." Finishes.</small></p></div>
+        <div class="chk" data-w="33"><div class="box"></div><p>It reaches across your live systems in real time.<small>Show me the actual integration list, not the roadmap.</small></p></div>
+        <div class="chk" data-w="33"><div class="box"></div><p>There's a written success metric with a named owner.<small>If nobody owns the number, nobody owns the outcome.</small></p></div>
+        <div class="fit-h">And the honest one</div>
+        <div class="chk fit" id="fit"><div class="box"></div><p>The task actually needs judgment, not just fixed rules.<small>If it's "when X happens, do Y," you might not need an agent at all.</small></p></div>
+      </div>
+      <div class="verdict"><div><span class="v" id="verdict">Repainted chatbot</span><p class="adv" id="adv">Don't sign yet. Ask for one live run on your own data first.</p></div><span class="meter"><i id="meter"></i></span></div>
+      <div class="src">Tick what the vendor on your desk can prove →</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCOPE BUILDER ============ -->
+<section id="scope" class="scope" data-p="72" data-s="3">
+  <div class="reveal">
+    <span class="tag">Stage 04 · Proposal · build your own brief</span>
+    <h2>Scope it in <em>three clicks.</em></h2>
+  </div>
+  <div class="scope-grid">
+    <div class="reveal" id="steps">
+      <div class="step" data-k="goal"><div class="step-h"><b>01</b><span>What are you trying to do?</span></div><div class="opts">
+        <button class="opt" data-v="automate">Automate a workflow</button><button class="opt" data-v="app">Ship a web or mobile app</button><button class="opt" data-v="ai">Add AI to our product</button><button class="opt" data-v="infra">Modernize our cloud / DevOps</button><button class="opt" data-v="unsure">Honestly, not sure yet</button></div></div>
+      <div class="step" data-k="data"><div class="step-h"><b>02</b><span>Where does your data live?</span></div><div class="opts">
+        <button class="opt" data-v="sheets">Spreadsheets &amp; inboxes</button><button class="opt" data-v="crm">A CRM or ERP</button><button class="opt" data-v="db">Our own database</button><button class="opt" data-v="mess">Everywhere, it's a mess</button></div></div>
+      <div class="step" data-k="pri"><div class="step-h"><b>03</b><span>What matters most?</span></div><div class="opts">
+        <button class="opt" data-v="speed">Speed to launch</button><button class="opt" data-v="cost">Keeping cost down</button><button class="opt" data-v="comp">Compliance &amp; privacy</button><button class="opt" data-v="scale">Scaling later</button></div></div>
+    </div>
+    <aside class="brief reveal" id="brief">
+      <div class="brief-top"><span>Scope brief · draft</span><span class="st" id="bst">0 / 3 answered</span></div>
+      <div class="brief-body" id="bbody"><div class="empty">Pick an answer on the left and your brief writes itself here.<i></i><i></i><i></i></div></div>
+      <div class="brief-foot"><small>Bring this to coffee</small><button id="bring">Add to my deal →</button></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 05 NEGOTIATION ============ -->
+<section id="proof" data-p="85" data-s="4">
+  <div class="reveal">
+    <span class="tag">Stage 05 · Negotiation · proof on the table</span>
+    <h2>Objection: <em>"But can he actually build?"</em></h2>
+  </div>
+  <div class="proof reveal">
+    <div class="tile t1">
+      <div class="k"><span>Final Year Project</span><span>Deployed</span></div>
+      <h3>Audient AI</h3>
+      <p>An AI-powered clinical documentation platform I took to production myself, from the full stack build to the real deployment problems: SSL, app context bugs, Celery worker config.</p>
+      <div class="stack"><span>Flask</span><span>React/TS</span><span>Whisper</span><span>Docker</span><span>AWS</span><span>Celery</span></div>
+    </div>
+    <div class="tile t2">
+      <div class="k"><span>Research</span><span>IEEE-style</span></div>
+      <h3>Securing CI/CD in DevSecOps</h3>
+      <p>Automated vulnerability scanning across SAST, DAST and SCA, and a proposed scoring formula, <b>SWVPS</b>.</p>
+    </div>
+    <div class="tile t3">
+      <div class="k"><span>Degree</span><span>2022–26</span></div>
+      <h3>BS Information Technology</h3>
+      <p>PUCIT, University of the Punjab. Cloud, DevOps, databases, networking, ML.</p>
+    </div>
+    <div class="tile t4">
+      <div class="k"><span>Certifications</span><span>×8</span></div>
+      <h3>HubSpot · Apollo · Sales Nav</h3>
+      <p>HubSpot Sales Software &amp; Inbound Sales (2024), Sales Navigator Foundations &amp; Apollo Outbound Sales Mastery (2025), plus CRM &amp; Salesforce Sales Ops.</p>
+    </div>
+    <div class="tile t5">
+      <div class="k"><span>Off the clock</span><span>Uni level</span></div>
+      <h3>Football, cricket, chess.</h3>
+      <p>Sports, Events and Welfare societies. Chess explains the discovery calls.</p>
+    </div>
+  </div>
+  <div class="notes reveal">
+    <div class="note"><q>A real agent reaches across your systems. A washed one produces text and waits for a human.</q><small>Field note · on agent washing</small></div>
+    <div class="note"><q>The distance between seeing an ad and having a sales conversation just collapsed to zero clicks.</q><small>Field note · on sponsored agents</small></div>
+    <div class="note"><q>The incentives you put an agent in shape its behavior more than the prompt does.</q><small>Field note · on agents policing agents</small></div>
+  </div>
+</section>
+
+<!-- ============ OFF THE RECORD ============ -->
+<section id="offrecord" class="otr" data-p="92" data-s="4">
+  <div class="otr-head reveal">
+    <div>
+      <span class="tag">Off the record · rapport building</span>
+      <h2>The part that <em>isn't in the CRM.</em></h2>
+    </div>
+    <p>Every good deal has a stretch where you stop talking business. This is mine: the gym, the mountains up north, and a lot of coffee.</p>
+  </div>
+  <p class="drag-hint reveal">↳ Go on, drag them around.</p>
+  <div class="wall reveal">
+    <figure class="snap s-lake"><span class="tape"></span>
+      <div class="img"><img src="img/lake.jpg" alt="Asif standing on a rock by a mountain lake" loading="lazy">
+        <div class="quote"><q>"If I must fall, may it be from a great height."</q><small>Rilke · pinned on my profile</small></div>
+      </div>
+      <figcaption><span>attachment_01.jpg</span><b>Altitude</b></figcaption>
+    </figure>
+    <figure class="snap s-gym"><span class="tape"></span>
+      <div class="img"><img src="img/gym.jpg" alt="Gym mirror selfie" loading="lazy"></div>
+      <figcaption><span>Showing up</span><b>Gym</b></figcaption>
+    </figure>
+    <figure class="snap s-peaks"><span class="tape"></span>
+      <div class="img"><img src="img/peaks.jpg" alt="Asif giving thumbs up in front of mountains" loading="lazy"></div>
+      <figcaption><span>Up north, offline</span><b>Peaks</b></figcaption>
+    </figure>
+    <figure class="snap s-sky">
+      <div class="img"><img src="img/sky.jpg" alt="Holding a drink up against a blue sky" loading="lazy"></div>
+      <figcaption><span>Cold sky, hot drink</span><b>Breaks</b></figcaption>
+    </figure>
+    <figure class="snap s-desk">
+      <div class="img"><img src="img/desk.jpg" alt="Asif working at a laptop with a coffee mug" loading="lazy"></div>
+      <figcaption><span>Office hours</span><b>Coffee</b></figcaption>
+    </figure>
+    <div class="facts">
+      <div><small>Plays</small><b>Football · Cricket · Chess</b></div>
+      <div><small>Recharges</small><b>In the mountains</b></div>
+      <div><small>Trains</small><b>The gym</b></div>
+      <div><small>Runs on</small><b>Coffee, always</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 CLOSED WON ============ -->
+<section id="close" class="close" data-p="100" data-s="5">
+  <div class="reveal">
+    <span class="tag">Stage 06 · Closing</span>
+    <h2>The only thing I'll ever <em>close you on</em> is coffee.</h2>
+    <p>Building something, modernizing what you already run, or just trying to figure out where to start? Fifteen minutes. Coffee is on me, because a coffee is always a good idea.</p>
+    <div class="sign-wrap"><button class="sign" id="sign" disabled>Sign the receipt first ↘</button></div>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/muhammad-asif-abbas-5387b1261/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="#" id="mailLink">Email ↗</a>
+      <a href="#" id="waLink" target="_blank" rel="noopener">WhatsApp ↗</a>
+      <a href="Muhammad_Asif_Abbas_Resume.pdf" download="Muhammad_Asif_Abbas_Resume.pdf">Résumé ↓</a>
+    </div>
+  </div>
+  <div class="receipt reveal" id="receipt">
+    <h4>DEAL #0001</h4>
+    <div class="c">NAXTECH · LAHORE · REMOTE WORLDWIDE</div>
+    <div class="row"><span>Discovery call</span><span>15 min</span></div>
+    <div class="row"><span>Straight answers</span><span>incl.</span></div>
+    <div class="row"><span>Technical scoping</span><span>incl.</span></div>
+    <div class="row"><span>Sales pitch</span><span>0.00</span></div>
+    <div class="row"><span>Coffee ×1</span><span>on me</span></div>
+    <div id="extra"></div>
+    <hr>
+    <div class="row tot"><span>YOU PAY</span><span>0.00</span></div>
+    <hr>
+    <div class="c" style="margin:10px 0 0">Outcome first · data second · tool last</div>
+    <div class="sigbox"><canvas id="sig"></canvas><div class="sl"><span>✕ SIGN HERE</span><button id="clearSig">clear</button></div></div>
+    <div class="bar"></div>
+    <div class="stamp" id="stamp">CLOSED WON</div>
+  </div>
+  <div class="console reveal" id="console">
+    <div class="con-l">
+      <h3>Skip the contact form.</h3>
+      <div class="sub">Answer two quick ones. I'll know why you're calling before I pick up.</div>
+      <div class="cq" data-k="topic"><b>01 · What's on your mind?</b><div class="copts">
+        <button class="copt" data-v="scoping a build">Scoping a build</button>
+        <button class="copt" data-v="whether our AI agent is the real thing">Is my AI agent real?</button>
+        <button class="copt" data-v="modernizing what we already run">Modernizing what we run</button>
+        <button class="copt" data-v="nothing in particular. Just coffee, no agenda">Just coffee, no agenda</button></div></div>
+      <div class="cq" data-k="when"><b>02 · When works?</b><div class="copts">
+        <button class="copt" data-v="Could we talk this week?">This week</button>
+        <button class="copt" data-v="Could we talk next week?">Next week</button>
+        <button class="copt" data-v="No rush, whenever suits you.">No rush</button></div></div>
+      <div class="cq"><b>03 · Your name (optional)</b><input class="cname" id="cname" placeholder="So I know who's texting" maxlength="40" autocomplete="name"></div>
+    </div>
+    <div class="con-r">
+      <div class="phone-h"><img src="img/asif.jpg" alt=""><div><b>Muhammad Asif Abbas</b><small>● usually replies fast</small></div></div>
+      <div class="bubble" id="bubble"></div>
+      <div class="acts">
+        <a class="act-b wa" id="waBtn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>WhatsApp</a>
+        <a class="act-b" id="callBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Call</a>
+        <a class="act-b" id="mailBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</a>
+      </div>
+      <div class="num"><span id="numTxt"></span><button id="copyNum">copy number</button></div>
+    </div>
+  </div>
+</section>
+<button class="kbtn" id="kbtn" aria-label="Open quick navigation"><span>Quick nav</span><kbd>/</kbd></button>
+<div class="pal-bg" id="palbg"><div class="pal" role="dialog" aria-label="Quick navigation"><input id="palin" placeholder="Where to? Try &quot;coffee&quot; or &quot;gym&quot;" autocomplete="off"><ul id="pallist"></ul><div class="ph"><span>↑↓ move · ↵ go · esc close</span><span>Built by a former engineer</span></div></div></div>
+<div class="toast" id="toast"></div>
+<footer><span>© 2026 Muhammad Asif Abbas</span><span>Deal stage: <b id="footStage" style="color:var(--paper)">Prospecting</b></span></footer>
+
+<script>
+// ---- ticker
+const feed=["<b>Call booked</b> · founder, SaaS","<b>Scope drafted</b> · agentic workflow","<b>Question answered</b> · on the first call","<b>Pilot moved</b> to production","<b>Follow-up sent</b> · nothing slipped","<b>Discovery</b> · past surface pain","<b>Handoff</b> · delivery team aligned","<b>Coffee</b> · always a good idea"];
+document.getElementById('ticker').innerHTML=[...feed,...feed].map(t=>`<span>● ${t}</span>`).join('');
+
+// ---- pipeline + probability
+const secs=[...document.querySelectorAll('section[data-p]')], stages=[...document.querySelectorAll('.stage')];
+const probEl=document.getElementById('probN'), probBox=document.getElementById('prob'), foot=document.getElementById('footStage');
+let cur=10;
+function animateProb(to){const from=cur;cur=to;const t0=performance.now();
+  (function f(t){const k=Math.min(1,(t-t0)/600);probEl.textContent=Math.round(from+(to-from)*k)+'%';if(k<1)requestAnimationFrame(f)})(t0);
+  probBox.classList.toggle('full',to===100)}
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const i=+e.target.dataset.s;
+  stages.forEach((s,j)=>{s.classList.toggle('done',j<i);s.classList.toggle('on',j===i)});
+  foot.textContent=stages[i].lastChild.textContent;animateProb(+e.target.dataset.p)}),{rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(s=>so.observe(s));
+
+// ---- reveal
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+// ---- discovery call
+const Q=[
+ ["Founder","Will this plug into the stack we already run?","Depends on three things I'll ask you right now: where your data lives, who owns the permissions, and what has to stay on-prem. Give me those and I'll tell you if it's an integration or a rebuild.","Let me loop in an engineer and get back to you next week."],
+ ["Ops lead","Is this an actual agent or a chatbot with a new logo?","Show me one task it finishes without a human doing the last step. If the answer is a roadmap, you're buying intent, not capability.","It's powered by the latest AI!"],
+ ["CTO","What breaks first when this hits production?","The demo never touched your messy, permission-locked data. The real system does. That's where we scope first, before anyone picks a model.","Our solution scales seamlessly."],
+ ["CFO","Cloud or local? Our data can't leave the building.","Then we plan for local inference from day one. Compliance, latency and cost all get simpler when the model runs in the room.","We'll need to check on that."]
+];
+const qs=document.getElementById('qs'),ans=document.getElementById('ans'),vs=document.getElementById('vs');let typing;
+Q.forEach((q,i)=>{const b=document.createElement('button');b.className='q';b.innerHTML=`<small>${q[0]}</small><span>${q[1]}</span>`;b.onclick=()=>ask(i);qs.appendChild(b)});
+function ask(i){[...qs.children].forEach((b,j)=>b.classList.toggle('active',i===j));clearInterval(typing);ans.textContent='';vs.innerHTML='';
+  const s=Q[i][2];let k=0;typing=setInterval(()=>{ans.textContent=s.slice(0,++k);if(k>=s.length){clearInterval(typing);vs.innerHTML=`Typical rep: <s>"${Q[i][3]}"</s>`}},14)}
+ask(0);
+let sec=0;setInterval(()=>{sec=(sec+1)%60;document.getElementById('clock').textContent=String(sec).padStart(2,'0')},1000);
+
+// ---- detector
+const chks=[...document.querySelectorAll('.chk')],verdict=document.getElementById('verdict'),meter=document.getElementById('meter');
+const adv=document.getElementById('adv'),fitEl=document.getElementById('fit'),vbox=verdict.closest('.verdict');
+chks.forEach(c=>c.onclick=()=>{c.classList.toggle('on');c.querySelector('.box').textContent=c.classList.contains('on')?'✓':'';
+  const n=chks.filter(x=>x!==fitEl&&x.classList.contains('on')).length,fit=fitEl.classList.contains('on');
+  meter.style.width=(n/3*100)+'%';meter.style.background=n===3?'var(--won)':'var(--signal)';
+  const V=[["Repainted chatbot","Don't sign yet. Ask for one live run on your own data first."],
+           ["Mostly a demo","Get the two missing proofs in writing before the next call."],
+           ["Getting warmer","One gap left. Make it a condition in the contract, not a promise."]];
+  let [h,a]=n<3?V[n]:fit?["Real agent. Right job.","This is where agentic AI earns its place. Sign it."]
+    :["Real agent. Wrong job.","If the task is fixed rules, a simple automation is cheaper and easier to trust. You may not need an agent. I'd tell you that on the call too."];
+  verdict.textContent=h;adv.textContent=a;vbox.classList.toggle('pass',n===3&&fit);vbox.classList.toggle('warn',n===3&&!fit)});
+
+// ---- close
+document.getElementById('sign').onclick=function(){if(this.disabled)return;const s=document.getElementById('stamp');s.classList.remove('hit');void s.offsetWidth;s.classList.add('hit');this.textContent='Deal closed. See you at coffee ☕'};
+
+// ---- toast
+const toastEl=document.getElementById('toast');let tt;
+function toast(m){toastEl.textContent=m;toastEl.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toastEl.classList.remove('show'),2200)}
+const go=id=>document.getElementById(id).scrollIntoView({behavior:'smooth'});
+
+// ---- scope builder
+const pick={};
+const TR={
+ automate:{t:"Agentic workflow",svc:["AI & Automation","Integrations","Agent monitoring"],m:"Pick one workflow, map every step and hand-off, then automate it end to end with no human doing the last step."},
+ app:{t:"Product build",svc:["Web / Mobile","UI/UX","Cloud deploy"],m:"Agree the smallest version real users will pay for, design it, then ship it to production. Not a demo."},
+ ai:{t:"AI inside your product",svc:["AI features","Data pipeline","Evaluation"],m:"Choose one feature where AI clearly beats the current flow, and set the metric it has to hit before it ships."},
+ infra:{t:"Cloud & DevOps modernization",svc:["DevOps","Cloud","CI/CD security"],m:"Audit what runs today, fix the riskiest pipeline first, then automate deploys so shipping stops being scary."},
+ unsure:{t:"Discovery sprint",svc:["Process mapping","Opportunity scan","Roadmap"],m:"Spend the first conversation finding the one bottleneck worth solving. Outcome first, tool last."}};
+const DQ={sheets:"Which spreadsheet or inbox does someone babysit every single day?",crm:"Which CRM or ERP is the source of truth, and who owns its permissions?",db:"What does the schema look like, and what has to stay behind your firewall?",mess:"If we could connect just one data source first, which one would unblock the most?"};
+const PQ={speed:"What date makes this worthless if we miss it?",cost:"What does this problem cost you each month right now, in hours or money?",comp:"Which rules are we working under, and can the model run locally?",scale:"What does ten times the current volume look like, and what breaks first?"};
+const GQ={automate:"Walk me through the workflow as it runs today, step by step.",app:"Who is the first user, and what do they do on day one?",ai:"Where do your users get stuck today that AI could actually fix?",infra:"What was the last deploy that went wrong, and why?",unsure:"What is the one thing you wish your team didn't have to do anymore?"};
+const brief=document.getElementById('brief'),bbody=document.getElementById('bbody'),bst=document.getElementById('bst');
+document.querySelectorAll('#steps .step').forEach(st=>st.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{
+  st.querySelectorAll('.opt').forEach(x=>x.classList.toggle('sel',x===o));pick[st.dataset.k]=o.dataset.v;renderBrief()}));
+function renderBrief(){const n=Object.keys(pick).length;bst.textContent=n===3?'Ready':n+' / 3 answered';brief.classList.toggle('ready',n===3);
+  const tr=pick.goal?TR[pick.goal]:null;
+  const qs=[pick.goal&&GQ[pick.goal],pick.data&&DQ[pick.data],pick.pri&&PQ[pick.pri]].filter(Boolean);
+  bbody.innerHTML=`<div class="fade"><div class="lbl" style="margin-top:0">Recommended track</div><h3>${tr?tr.t:'…'}</h3>
+   ${tr?`<div class="chips">${tr.svc.map(x=>`<span>${x}</span>`).join('')}</div><div class="lbl">First milestone</div><p style="font-size:15px;line-height:1.45">${tr.m}</p>`:''}
+   <div class="lbl">What I'd ask you on the first call</div><ol>${qs.map(q=>`<li>${q}</li>`).join('')}</ol></div>`}
+document.getElementById('bring').onclick=()=>{const t=TR[pick.goal].t;document.getElementById('extra').innerHTML=`<div class="row new"><span>Scope brief: ${t}</span><span>incl.</span></div>`;toast('Brief added to your deal');setTimeout(()=>go('close'),500)};
+
+// ---- draggable photos (mouse / pen only, so touch still scrolls)
+document.querySelectorAll('.snap').forEach(el=>{let sx,sy,ox=0,oy=0;
+  el.querySelector('img').draggable=false;
+  el.addEventListener('pointerdown',e=>{if(e.pointerType==='touch')return;e.preventDefault();sx=e.clientX-ox;sy=e.clientY-oy;el.classList.add('dragging');try{el.setPointerCapture(e.pointerId)}catch(_){}});
+  el.addEventListener('pointermove',e=>{if(!el.classList.contains('dragging'))return;ox=e.clientX-sx;oy=e.clientY-sy;el.style.translate=`${ox}px ${oy}px`});
+  const end=()=>el.classList.remove('dragging');el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end)});
+
+// ---- signature pad
+const cv=document.getElementById('sig'),cx=cv.getContext('2d'),signBtn=document.getElementById('sign');let drawing=false,ink=0,last;
+function sizeSig(){const r=cv.getBoundingClientRect(),d=devicePixelRatio||1;cv.width=r.width*d;cv.height=r.height*d;cx.setTransform(d,0,0,d,0,0);cx.lineWidth=2.2;cx.lineCap='round';cx.lineJoin='round';cx.strokeStyle='#1d3fbf';ink=0;signBtn.disabled=true;signBtn.textContent='Sign the receipt first ↘'}
+sizeSig();new ResizeObserver(()=>{if(!ink)sizeSig()}).observe(cv);
+const pt=e=>{const r=cv.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]};
+cv.addEventListener('pointerdown',e=>{drawing=true;last=pt(e);try{cv.setPointerCapture(e.pointerId)}catch(_){}});
+cv.addEventListener('pointermove',e=>{if(!drawing)return;const p=pt(e);cx.beginPath();cx.moveTo(...last);cx.lineTo(...p);cx.stroke();ink+=Math.hypot(p[0]-last[0],p[1]-last[1]);last=p;
+  if(ink>120&&signBtn.disabled){signBtn.disabled=false;signBtn.textContent='Sign the deal →'}});
+['pointerup','pointercancel'].forEach(t=>cv.addEventListener(t,()=>drawing=false));
+document.getElementById('clearSig').onclick=()=>{cx.clearRect(0,0,cv.width,cv.height);sizeSig()};
+
+// ---- tab title follow-up
+const baseTitle=document.title;
+document.addEventListener('visibilitychange',()=>{if(document.hidden)document.title='☕ Just following up…';else{document.title='Welcome back 👋';setTimeout(()=>document.title=baseTitle,1800)}});
+
+// ---- command palette
+const CMDS=[
+ ["Start: who is Asif?","Section",()=>go('prospect')],
+ ["Ask me a buyer question","Discovery",()=>go('discovery')],
+ ["Experience: my career board","Qualification",()=>go('qualify')],
+ ["Run the agent-washing test","Tool",()=>go('proposal')],
+ ["Scope my project","Tool",()=>go('scope')],
+ ["Audient AI & research","Proof",()=>go('proof')],
+ ["Mountains, gym & coffee","Off the record",()=>go('offrecord')],
+ ["Book the coffee","Close",()=>go('close')],
+ ["Open LinkedIn","External",()=>open('https://www.linkedin.com/in/muhammad-asif-abbas-5387b1261/','_blank')],
+];
+const bg=document.getElementById('palbg'),pin=document.getElementById('palin'),pl=document.getElementById('pallist');let sel=0,shown=CMDS;
+function drawPal(){const q=pin.value.toLowerCase().trim();shown=CMDS.filter(c=>(c[0]+' '+c[1]).toLowerCase().includes(q));sel=Math.min(sel,Math.max(0,shown.length-1));
+  pl.innerHTML=shown.length?shown.map((c,i)=>`<li class="${i===sel?'act':''}" data-i="${i}"><span>${c[0]}</span><small>${c[1]}</small></li>`).join(''):'<li><span>No match. Coffee still stands.</span></li>';
+  pl.querySelectorAll('li[data-i]').forEach(li=>{li.onclick=()=>run(+li.dataset.i);li.onmousemove=()=>{if(sel!==+li.dataset.i){sel=+li.dataset.i;drawPal()}}})}
+function openPal(){bg.classList.add('open');pin.value='';sel=0;drawPal();setTimeout(()=>pin.focus(),10)}
+function closePal(){bg.classList.remove('open')}
+function run(i){const c=shown[i];if(!c)return;closePal();c[2]()}
+document.getElementById('kbtn').onclick=openPal;bg.onclick=e=>{if(e.target===bg)closePal()};
+pin.oninput=()=>{sel=0;drawPal()};
+addEventListener('keydown',e=>{const typing=/INPUT|TEXTAREA/.test(document.activeElement.tagName);
+  if(!bg.classList.contains('open')){if((e.key==='/'&&!typing)||(e.key.toLowerCase()==='k'&&(e.metaKey||e.ctrlKey))){e.preventDefault();openPal()}return}
+  if(e.key==='Escape')closePal();else if(!shown.length)return;else if(e.key==='ArrowDown'){sel=(sel+1)%shown.length;drawPal();e.preventDefault()}else if(e.key==='ArrowUp'){sel=(sel-1+shown.length)%shown.length;drawPal();e.preventDefault()}else if(e.key==='Enter')run(sel)});
+
+// ---- contact console
+const CONTACT={phone:'+923143796943',phoneTxt:'+92 314 379 6943',email:'masifabbas1090@gmail.com'};
+const digits=CONTACT.phone.replace(/\D/g,'');
+const cpick={},bubble=document.getElementById('bubble'),cname=document.getElementById('cname');
+document.getElementById('numTxt').textContent=CONTACT.phoneTxt;
+document.getElementById('callBtn').href='tel:'+CONTACT.phone;
+function buildMsg(){const nm=cname.value.trim();const brief=document.querySelector('#extra .row span');
+  let m=`Hi Asif${nm?`, this is ${nm}`:''}. I found you through your portfolio.`;
+  m+=cpick.topic?` I'd like to talk about ${cpick.topic}.`:` I'd like to grab that coffee.`;
+  if(brief)m+=` (${brief.textContent})`;
+  if(cpick.when)m+=` ${cpick.when}`;return m}
+function links(m){const wa=`https://wa.me/${digits}?text=${encodeURIComponent(m)}`;
+  const mail=`mailto:${CONTACT.email}?subject=${encodeURIComponent('Coffee? (from your portfolio)')}&body=${encodeURIComponent(m)}`;
+  document.getElementById('waBtn').href=wa;document.getElementById('waLink').href=wa;
+  document.getElementById('mailBtn').href=mail;document.getElementById('mailLink').href=mail}
+let bt;function typeMsg(){const m=buildMsg();links(m);clearInterval(bt);let k=0;bubble.classList.add('typing');
+  bt=setInterval(()=>{k+=3;bubble.textContent=m.slice(0,k);if(k>=m.length){clearInterval(bt);bubble.textContent=m;bubble.classList.remove('typing')}},16)}
+document.querySelectorAll('#console .cq[data-k]').forEach(q=>q.querySelectorAll('.copt').forEach(o=>o.onclick=()=>{
+  q.querySelectorAll('.copt').forEach(x=>x.classList.toggle('sel',x===o));cpick[q.dataset.k]=o.dataset.v;typeMsg()}));
+let nt;cname.oninput=()=>{clearTimeout(nt);nt=setTimeout(typeMsg,350)};
+document.getElementById('copyNum').onclick=()=>{navigator.clipboard?.writeText(CONTACT.phoneTxt).then(()=>toast('Number copied'),()=>toast(CONTACT.phoneTxt))};
+new MutationObserver(typeMsg).observe(document.getElementById('extra'),{childList:true});
+typeMsg();
+CMDS.splice(CMDS.length-1,0,["WhatsApp me","Contact",()=>open(document.getElementById('waBtn').href,'_blank')],["Call me","Contact",()=>location.href='tel:'+CONTACT.phone],["Email me","Contact",()=>location.href=document.getElementById('mailBtn').href]);
+
+// ---- KPI count-up
+const kio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;kio.unobserve(e.target);
+  e.target.querySelectorAll('b[data-to]').forEach(b=>{const to=+b.dataset.to,pre=b.dataset.pre||'',suf=b.dataset.suf||'',t0=performance.now();
+    (function f(t){const k=Math.min(1,(t-t0)/1100),v=Math.round(to*(1-Math.pow(1-k,3)));b.textContent=pre+v+suf;if(k<1)requestAnimationFrame(f)})(t0)})}),{threshold:.4});
+document.querySelectorAll('.kpis').forEach(k=>kio.observe(k));
+</script>
+</body>
+</html>

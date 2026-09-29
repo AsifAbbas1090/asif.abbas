@@ -21,7 +21,7 @@
   --mono:'JetBrains Mono',ui-monospace,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
 body{background:var(--paper);color:var(--ink);font-family:var(--display);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::selection{background:var(--signal);color:var(--paper)}
 a{color:inherit}
@@ -33,7 +33,8 @@ a{color:inherit}
 .pipe-id{padding:12px 18px;border-right:1.5px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:2px}
 .pipe-id b{font-family:var(--mono);font-size:12px}
 .pipe-id span{font-family:var(--mono);font-size:10px;color:var(--muted)}
-.stages{display:grid;grid-template-columns:repeat(6,1fr)}
+.stages{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
+.stage{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .stage{position:relative;padding:12px 14px;border-right:1px solid rgba(20,20,18,.2);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-decoration:none;transition:color .3s}
 .stage i{font-style:normal;display:block;font-size:9px;opacity:.7}
 .stage::after{content:"";position:absolute;left:0;bottom:-1.5px;height:3px;width:0;background:var(--signal);transition:width .5s}
@@ -69,7 +70,7 @@ h2 em{font-style:normal;color:var(--signal)}
 .record-top{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1.5px solid var(--line);font-family:var(--mono);font-size:10.5px;text-transform:uppercase}
 .record-top .live{color:var(--won)} .record-top .live::before{content:"● "}
 .photo{aspect-ratio:4/4.3;margin:14px;border:1.5px dashed var(--muted);display:grid;place-items:center;background:repeating-linear-gradient(-45deg,var(--paper-2) 0 10px,var(--paper) 10px 20px);position:relative;overflow:hidden}
-.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 40%}
 .photo:has(img){border-style:solid;border-color:var(--line)}
 .photo span{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;background:var(--card);padding:6px 10px;border:1px solid var(--muted)}
 .fields{display:grid;grid-template-columns:1fr 1fr;border-top:1.5px solid var(--line)}
@@ -192,7 +193,7 @@ h2 em{font-style:normal;color:var(--signal)}
 .otr{background:var(--paper-2)}
 .otr-head{display:flex;justify-content:space-between;align-items:end;gap:5vw;flex-wrap:wrap}
 .otr-head p{font-size:18px;line-height:1.45;max-width:34ch;color:#3a3833;margin-bottom:40px}
-.wall{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(150px,17vw,250px);gap:18px}
+.wall{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(2,clamp(200px,22vw,300px)) auto;gap:22px}
 .snap{position:relative;background:var(--card);border:1.5px solid var(--line);padding:10px 10px 44px;box-shadow:6px 6px 0 var(--ink);transition:transform .35s,box-shadow .35s}
 .snap:hover{transform:rotate(0) translate(-3px,-3px)!important;box-shadow:10px 10px 0 var(--signal);z-index:2}
 .snap .img{width:100%;height:100%;overflow:hidden;position:relative;background:var(--paper-2)}
@@ -201,27 +202,23 @@ h2 em{font-style:normal;color:var(--signal)}
 .snap figcaption{position:absolute;left:12px;right:12px;bottom:10px;display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:10.5px;text-transform:uppercase}
 .snap figcaption b{color:var(--signal);font-weight:600}
 .snap .tape{position:absolute;top:-12px;left:50%;width:84px;height:24px;background:rgba(255,74,28,.55);transform:translateX(-50%) rotate(-4deg)}
-.s-lake{grid-column:1/6;grid-row:span 3;transform:rotate(-1.2deg)}
+.s-lake{grid-column:1/6;grid-row:span 2;transform:rotate(-1.2deg)}
 .s-lake .quote{position:absolute;left:0;right:0;bottom:0;padding:60px 20px 18px;background:linear-gradient(transparent,rgba(10,10,9,.8));color:#F2EFE6}
 .s-lake .quote q{font-size:clamp(20px,2vw,28px);font-weight:800;letter-spacing:-.02em;line-height:1.05;quotes:none;display:block}
 .s-lake .quote small{font-family:var(--mono);font-size:10px;text-transform:uppercase;opacity:.75;display:block;margin-top:8px}
-.s-gym{grid-column:6/9;grid-row:span 2;transform:rotate(1.5deg)}
+.s-gym{grid-column:6/9;grid-row:span 2;margin-top:34px;transform:rotate(1.5deg)}
 .s-gym img{object-position:center 60%}
 .s-peaks{grid-column:9/13;grid-row:span 2;transform:rotate(-1deg)}
 .s-peaks img{object-position:center 40%}
-.s-sky{grid-column:6/10;grid-row:span 1;transform:rotate(-.6deg)}
-.s-desk{grid-column:10/13;grid-row:span 1;transform:rotate(1.2deg)}
-.s-desk img{object-position:center 45%}
-.facts{grid-column:1/13;display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--line);background:var(--card);margin-top:14px}
+.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--line);background:var(--card);margin-top:14px}
 .facts div{padding:16px 18px;border-right:1px solid rgba(20,20,18,.15)}
 .facts div:last-child{border-right:0}
 .facts small{display:block;font-family:var(--mono);font-size:10px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .facts b{font-size:17px;letter-spacing:-.01em}
 @media (max-width:980px){
-  .wall{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
-  .wall .snap{grid-column:auto!important;grid-row:auto!important;aspect-ratio:3/4}
+  .wall{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:auto}
+  .wall .snap{grid-column:auto!important;grid-row:auto!important;aspect-ratio:3/4;margin-top:0}
   .wall .s-lake{grid-column:1/3!important;aspect-ratio:4/5}
-  .wall .s-sky{grid-column:1/3!important;aspect-ratio:4/3}
   .facts{grid-template-columns:1fr 1fr}
   .facts div:nth-child(2){border-right:0}
   .facts div:nth-child(-n+2){border-bottom:1px solid rgba(20,20,18,.15)}
@@ -334,7 +331,7 @@ h2 em{font-style:normal;color:var(--signal)}
 .sign{margin-top:36px;all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:14px;background:var(--signal);color:var(--ink);padding:20px 28px;font-weight:800;font-size:20px;letter-spacing:-.01em;border:1.5px solid var(--signal);transition:all .2s}
 .sign:hover{background:var(--paper);border-color:var(--paper)}
 .sign-wrap{margin-top:36px}
-.receipt{background:#FBFAF6;color:var(--ink);font-family:var(--mono);font-size:12.5px;padding:26px 24px 34px;position:relative;max-width:360px;justify-self:center;width:100%;transform:rotate(-2deg);
+.receipt{overflow:hidden;background:#FBFAF6;color:var(--ink);font-family:var(--mono);font-size:12.5px;padding:26px 24px 34px;position:relative;max-width:360px;justify-self:center;width:100%;transform:rotate(-2deg);
   -webkit-mask:radial-gradient(circle 7px at 50% 100%,transparent 98%,#000) 0 0/18px 100% repeat-x;mask:radial-gradient(circle 7px at 50% 100%,transparent 98%,#000) bottom/18px 14px repeat-x, linear-gradient(#000,#000) top/100% calc(100% - 13px) no-repeat}
 .receipt h4{text-align:center;font-size:15px;letter-spacing:.1em;margin-bottom:4px}
 .receipt .c{text-align:center;color:var(--muted);font-size:10.5px;margin-bottom:16px}
@@ -373,11 +370,51 @@ section{scroll-margin-top:0}
   .pipe-inner{grid-template-columns:1fr auto}
   .stage{padding:10px 4px;font-size:0;text-align:center}
   .stage::before{content:attr(data-n);font-size:10px}
-  .prob{min-width:0;padding:6px 12px}
-  .prob strong{font-size:20px}
+  .prob{min-width:0;padding:6px 10px}
+  .prob small{font-size:8.5px}
+  .prob strong{font-size:18px}
   .board{grid-template-columns:1fr}
   .hero-meta{gap:16px}
   .scrollcue{left:16px}
+}
+
+/* ---------- PHONE POLISH ---------- */
+@media (max-width:640px){
+  section{min-height:auto;padding-bottom:64px}
+  #prospect{min-height:100svh}
+  h2{margin:18px 0 28px}
+  .hero-meta div{min-width:0;flex:1 1 40%}
+  .record{transform:rotate(.8deg);box-shadow:6px 6px 0 var(--ink)}
+  .fields small,.prob small{font-size:10px}
+  .col{min-height:0}
+  .kpis div{padding:14px}
+  .kpis small{font-size:9.5px}
+  .disc p.body{font-size:18px}
+  .q{padding:14px;font-size:15px}
+  .order li{grid-template-columns:44px 1fr}
+  .detector,.brief,.call{box-shadow:5px 5px 0 var(--ink)}
+  .call{box-shadow:5px 5px 0 var(--signal)}
+  .tile{padding:18px}
+  .tile h3{font-size:24px}
+  .note{min-height:0}
+  .wall{gap:16px}
+  .wall .snap{height:auto;aspect-ratio:3/4}
+  .wall .s-lake{height:auto;aspect-ratio:4/5}
+  .snap{padding:8px 8px 40px}
+  .snap figcaption{font-size:9.5px}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div{padding:12px 14px}
+  .facts b{font-size:15px}
+  .close p{font-size:17px}
+  .sign{padding:16px 20px;font-size:17px;width:100%;box-sizing:border-box;justify-content:center}
+  .links{flex-wrap:wrap;gap:6px 18px}
+  .links a{display:inline-block;padding:10px 0}
+  .receipt{max-width:100%;transform:rotate(-1deg)}
+  .sigbox button,.num button{padding:10px 4px;margin:-10px -4px}
+  .console{margin-top:10px}
+  .con-l h3{font-size:26px}
+  .kbtn{right:12px;bottom:12px;padding:10px 12px}
+  footer{flex-direction:column;gap:6px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
@@ -415,7 +452,7 @@ section{scroll-margin-top:0}
     </div>
     <aside class="record reveal">
       <div class="record-top"><span>Contact record</span><span class="live">Open to talk</span></div>
-      <div class="photo"><span>Your photo goes here</span><img src="img/asif.jpg" alt="Muhammad Asif Abbas" onerror="this.remove()"></div>
+      <div class="photo"><span>Your photo goes here</span><img src="img/hero.jpg" alt="Muhammad Asif Abbas at his desk with a coffee and laptop" onerror="this.remove()"></div>
       <div class="fields">
         <div><small>Name</small><b>Muhammad Asif Abbas</b></div>
         <div><small>Lead source</small><b>Engineering → Sales</b></div>
@@ -626,14 +663,6 @@ section{scroll-margin-top:0}
     <figure class="snap s-peaks"><span class="tape"></span>
       <div class="img"><img src="img/peaks.jpg" alt="Asif giving thumbs up in front of mountains" loading="lazy"></div>
       <figcaption><span>Up north, offline</span><b>Peaks</b></figcaption>
-    </figure>
-    <figure class="snap s-sky">
-      <div class="img"><img src="img/sky.jpg" alt="Holding a drink up against a blue sky" loading="lazy"></div>
-      <figcaption><span>Cold sky, hot drink</span><b>Breaks</b></figcaption>
-    </figure>
-    <figure class="snap s-desk">
-      <div class="img"><img src="img/desk.jpg" alt="Asif working at a laptop with a coffee mug" loading="lazy"></div>
-      <figcaption><span>Office hours</span><b>Coffee</b></figcaption>
     </figure>
     <div class="facts">
       <div><small>Plays</small><b>Football · Cricket · Chess</b></div>
